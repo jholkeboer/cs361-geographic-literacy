@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 26
+/svn/!svn/ver/179/trunk/ui
+END
+jquery.ui.map.js
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/179/trunk/ui/jquery.ui.map.js
+END
+jquery.ui.gmap.rdfa.js
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/136/trunk/ui/jquery.ui.gmap.rdfa.js
+END
+jquery.ui.map.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/179/trunk/ui/jquery.ui.map.min.js
+END
+jquery.ui.gmap.rdfa.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/136/trunk/ui/jquery.ui.gmap.rdfa.min.js
+END
+jquery.ui.gmap.microformat.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/136/trunk/ui/jquery.ui.gmap.microformat.js
+END
+jquery.ui.gmap.microdata.js
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/136/trunk/ui/jquery.ui.gmap.microdata.js
+END
+jquery.ui.gmap.microformat.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/136/trunk/ui/jquery.ui.gmap.microformat.min.js
+END
+jquery.ui.gmap.microdata.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/136/trunk/ui/jquery.ui.gmap.microdata.min.js
+END

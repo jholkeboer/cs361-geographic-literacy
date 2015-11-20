@@ -36,3 +36,15 @@ function processNews(data) {
   // this is where the news items actually live in the JSON response
   console.log(data.responseData.results);
 }
+
+function drawMap() {
+	$(function() {
+		// Also works with: var yourStartLatLng = '59.3426606750, 18.0736160278';
+		var yourStartLatLng = new google.maps.LatLng(59.3426606750, 18.0736160278);
+		$('#map_canvas').gmap({'center': yourStartLatLng});
+	})
+}
+
+function isEven(num) {
+  return (num % 2 == 0) ? true : false;
+}
