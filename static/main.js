@@ -75,10 +75,10 @@ function processNews(data) {
     for(var i = 0; i < data.responseData.results.length; i++) {
         // var newsNum = i + 1
         // contentString = contentString + newsNum + ". " + data.responseData.results[i]['content'] + '<br>' + "<a href='http://" + data.responseData.results[i]['url'] + "'>" + data.responseData.results[i]['unescapedUrl'] + "</a>" + '<br><hr>'
-        $('#news-list').append($('<li>').html($('<a>',{
+        $('#news-list').append($('<li>').append($('<a>',{
             text: data.responseData.results[i].titleNoFormatting,
             title: "News Link " + (i+1).toString(),
-            href: data.responseData.results[i].url
+            href: data.responseData.results[i].unescapedUrl
         })))
     }
     
