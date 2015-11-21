@@ -1,10 +1,9 @@
 //the globals
 var contentString = ""
-var infowindow
+var infowindow;
 var geocoder;
 var chartBase = 'https://chart.googleapis.com/chart?chst='; //defines what icon appears when you click
 var marker; //variable to hold the icon when you click
-
 
 function getCurrentCountry() {
   return document.getElementById('country').value;
@@ -52,13 +51,21 @@ function processNews(data) {
         var newsNum = i + 1
         contentString = contentString + newsNum + ". " + data.responseData.results[i]['content'] + '<br>' + "<a href='http://" + data.responseData.results[i]['url'] + "'>" + data.responseData.results[i]['unescapedUrl'] + "</a>" + '<br><hr>'
     }
-    
-    infowindow = new google.maps.InfoWindow({content: contentString});
+    loadInfoWindow();
+}
 
-    marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
-
+function loadInfoWindow()
+{
+    if (infowindow)
+    {
+        infowindow.setContent(contentString);
+    }
+    else
+    {
+        console.log("no window");
+        infowindow = new google.maps.InfoWindow({content: contentString});
+        infowindow.open(map, marker);    
+    }
 }
 
 function isEven(num) {
@@ -168,9 +175,10 @@ function initialize() {
                     // Info Window
                         marker.setPosition(mouseEvent.latLng);
                         marker.setIcon(getCountryIcon(country));
-
+                        
                     getNewsOnClick(country.long_name);
                     getWeather(iso3);
+                    infowindow.open(map, marker);
                     headingP.innerHTML = country.long_name;
                 }
                 if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
@@ -187,4 +195,5 @@ function initialize() {
             }
         );
     });
+
 }
