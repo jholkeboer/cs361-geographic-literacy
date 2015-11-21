@@ -1,4 +1,4 @@
-[
+var countryData = [
     {
         "alpha_2": "AF", 
         "name": "Afghanistan", 
@@ -1447,7 +1447,7 @@
     }, 
     {
         "alpha_2": "VN", 
-        "name": "Viet Nam", 
+        "name": "Vietnam", 
         "numeric": "704", 
         "alpha_3": "VNM"
     }, 
