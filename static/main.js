@@ -42,7 +42,7 @@ function getWeather(iso3) {
 // needs to be lowercase because the World Bank APi drops case
 function processweather(data) {
   // monthly temperatures, which can be graphed to see the "climate"
-    $('#weather-chart').html('')
+    $('#weather-table tbody').html('<tr><th><th><td>Degrees(C)</td></tr>')
     console.log(data[0].monthVals);
     var months = [
         "Jan",
