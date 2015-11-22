@@ -1,7 +1,26 @@
+// Chai reference:
+// http://chaijs.com/api/bdd/
+
 var expect = chai.expect;
 
-describe('Is Even Tests', function () {
-	it('Should always return a boolean', function() {
-		expect(isEven(2)).to.be.a('boolean');
+
+describe('General Tests', function() {
+	it('Get country ISO3 by name', function () {
+		expect(getIso3ByName("Sweden")).to.equal("SWE");
 	});
+	it('Get country ISO2 by name', function () {
+		expect(getIso2ByName("Sweden")).to.equal("SE");
+	})
 });
+
+// describe('News Tests', function () {	
+// 	it('Get News', function () {
+// 		expect()
+// 	});
+// });
+
+// describe('Weather Tests', function () {
+// 	it('Get Weather', function () {
+// 		expect()
+// 	})
+// });
