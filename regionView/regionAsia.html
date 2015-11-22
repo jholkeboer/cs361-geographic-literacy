@@ -1,6 +1,73 @@
 <html>
   <head>
-       <link rel="stylesheet" href="region.css">
+      <style>
+          body { 
+            font: .875em/1.618 Helvetica, Sans-serif; 
+          }
+          #regionNavigation {
+            background-color: #eee;
+            max-width: 900px;
+          }
+          #regionNavigation ul {
+            margin: 0;
+            padding: 0; 
+          }
+          #regionNavigation li {
+            border-right: 1px solid #ddd;
+            display: line-block;
+            float: left;
+            margin: 0;
+          }
+          #regionNavigation li:last-child {
+            border-right-width: 0;
+          }
+          #regionNavigation a {
+            background-color: #eee;
+            color: #333;
+            display: block;
+            padding: .75em 1.5em;
+            text-decoration: none;
+            transition: all .25s ease-in-out;
+            -moz-transition: all .25s ease-in-out;
+            -webkit-transition: all .25s ease-in-out;
+          }
+          #regionNavigation a:hover {
+            background-color: #ddd;
+          }
+
+          #regionLegend {
+              background-color: #eee;
+          }
+          #regionLegend th{
+            text-align: center;
+          }
+          #regionLegend td{
+            padding: 20px;
+            text-align: center;
+          }
+          .clearfix {
+            *zoom: 1;
+          }
+          .clearfix:after, 
+          .clearfix:before {
+            content: '';
+            display: table;
+          }
+          .clearfix:after {
+            clear: both;
+          }
+    </style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+      <title>Geographic Literacy</title>
+        <script src="static/jquery.js"></script>
+        <script src="https://maps.google.com/maps/api/js" type="text/javascript"></script>
+        <script src="ui/jquery-ui.js"></script>
+        <script src="ui/jquery.ui.map.js"></script>
+        <script src="static/countries.js"></script>
+        <script src="static/main.js"></script>
+      
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["geochart"]});
@@ -288,46 +355,50 @@
     </script>
   </head>
   <body>
-  <nav id="navigation" class="clearfix">
-  <ul>
-    <li><a href="region2.html">World View of Regions</a></li>
-    <li><a href="regionAfrica.html">Africa</a></li>
-    <li><a href="regionAmericas.html">Americas</a></li>
-    <li><a href="regionAsia.html">Asia</a></li>
-    <li><a href="regionEurope.html">Europe</a></li>
-    <li><a href="regionOceania.html">Oceania</a></li>
-  </ul>
-</nav>
-    <h1>Facilitating Geographic Literacy</h1>
-    <h2>Asia</h2>
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+  <nav class="navbar navbar-default">
+        Facilitating Geographic Literacy&nbsp;&nbsp;&nbsp;
+        <a href="index.html">Back to Home</a>&nbsp;|&nbsp;
+        <a href="world-view.html">World View</a>&nbsp;|&nbsp;
+        <a href="at-a-glance.html">At a glance</a>&nbsp;|&nbsp;
+        <a href="region-view.html">Regions</a>
+    </nav>
 
+    <h2>Regions in Asia</h2>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    <!--       Navigation of regional views      -->
+    <nav id="regionNavigation" class="clearfix">
+    <ul>
+      <!--<li><a href="region2.html">World View of Regions</a></li>-->
+      <li><a href="regionAfrica.html">Regions in Africa</a></li>
+      <li><a href="regionAmericas.html">Regions in the Americas</a></li>
+      <li><a href="regionAsia.html">Regions in Asia</a></li>
+      <li><a href="regionEurope.html">Regions in Europe</a></li>
+      <li><a href="regionOceania.html">Regions in Oceania</a></li>
+    </ul>
    
-  <table id="legend">
-  <tr>
-    <th>Region</th>
-    <th>Region Code</th>
-    <th>Region</th>
-    <th>Region Code</th>
-  </tr>
-  <tr>
-    <td>Central Asia</td>
-    <td>10</td> 
-    <td>Eastern Asia</td>
-    <td>11</td> 
-  </tr>
-   <tr>
-    <td>Southern Asia</td>
-    <td>12</td> 
-    <td>Southeastern Asia</td>
-    <td>13</td> 
-  </tr>
-   <tr>
-    <td>Western Asia</td>
-    <td>14</td> 
-    <td></td>
-    <td></td> 
-  </tr>
-</table>
+   <!--  LEGEND of regions within   -->
+  <table id="regionLegend">
+      <tr>
+        <th>Region</th>
+        <th>Region Code</th>
+        <th>Region</th>
+        <th>Region Code</th>
+        <th>Region</th>
+        <th>Region Code</th>
+      </tr>
+      <tr>
+        <td>Central Asia</td>
+        <td>10</td> 
+        <td>Eastern Asia</td>
+        <td>11</td> 
+        <td>Southern Asia</td>
+        <td>12</td> 
+      </tr>
+       <tr>
+        <td>Southeastern Asia</td>
+        <td>13</td> 
+        <td>Western Asia</td>
+        <td>14</td> 
+    </table>
   </body>
 </html>
