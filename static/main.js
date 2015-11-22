@@ -4,7 +4,8 @@ var infowindow
 var geocoder;
 var chartBase = 'https://chart.googleapis.com/chart?chst='; //defines what icon appears when you click
 var marker; //variable to hold the icon when you click
-
+var gdp;
+var pop;
 
 function getCurrentCountry() {
   return document.getElementById('country').value;
@@ -25,6 +26,32 @@ function getNewsOnClick(countryName) {
         url: newsApi + countryName,
         dataType: 'jsonp',
         success: processNews
+    });
+}
+
+function getOverview(iso3) {
+    $('#country-basics').html("<ul><li id='population'></li><li id='gdp'></li></ul>")
+    getGDPOnClick(iso3)
+    getPOPOnClick(iso3)
+}
+
+function getGDPOnClick(iso3) {
+    console.log("getGDPOnClick");
+    var gdpApi = 'http://gpi.tschuy.com:5000/countries/';
+    $.ajax({
+        url: gdpApi + iso3 + "/indicators/NY.GDP.MKTP.CD/?date=2014:2014&format=json",
+        dataType: 'text',
+        success: processGDP
+    });
+}
+
+function getPOPOnClick(iso3) {
+    console.log("getPOPOnClick");
+    var gdpApi = 'http://gpi.tschuy.com:5000/countries/';
+    $.ajax({
+        url: gdpApi + iso3 + "/indicators/SP.POP.TOTL/?date=2014:2014&format=json",
+        dataType: 'text',
+        success: processPOP
     });
 }
 
@@ -68,6 +95,30 @@ function processweather(data) {
     }
 }
 
+function processGDP(data) {
+    console.log("processGDP");
+    console.log(data);
+    
+    gdp = JSON.parse(data);
+    console.log(gdp);
+    console.log(gdp[1][0].value);
+    
+    gdp = gdp[1][0].value;
+    $('#country-basics').append($('<ul>').append($('#gdp')).append('<b>GDP</b>: ' + gdp))
+}
+
+function processPOP(data) {
+    console.log("processPOP");
+    console.log(data);
+    
+    pop = JSON.parse(data);
+    console.log(pop);
+    console.log(pop[1][0].value);
+    
+    pop = pop[1][0].value;
+    $('#country-basics').append($('<ul>').append($('#population')).append('<b>Pop</b>: ' + pop))
+}
+
 function processNews(data) {
     console.log(data.responseData.results)
     $('#news-list').html('');
@@ -85,7 +136,7 @@ function processNews(data) {
     infowindow = new google.maps.InfoWindow({content: contentString});
 
     marker.addListener('click', function() {
-    infowindow.open(map, marker);
+        infowindow.open(map, marker);
   });
 
 }
@@ -101,7 +152,6 @@ function eqfeed_callback(results) {
 }
 
 //gotten from http://gmaps-samples-v3.googlecode.com/svn/trunk/country_explorer/country_explorer.html
-
 function getCountry(results) {
     var geocoderAddressComponent,addressComponentTypes,address;
     for (var i in results) {
@@ -201,6 +251,9 @@ function initialize() {
 
                     getNewsOnClick(country.long_name);
                     getWeather(iso3);
+                    getOverview(iso3)
+                   // getGDPOnClick(iso3);
+                  //  getPOPOnClick(iso3);
                     headingP.innerHTML = country.long_name;
                     
                     $('#country-name').text(country.long_name);
