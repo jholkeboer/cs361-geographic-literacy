@@ -47,7 +47,7 @@
               ['BF', 9, 'Western Africa'],
               ['BI', 6, 'Eastern Africa'],
               ['KH', 4, 'Southeast Asia'],
-              ['CM', 6, 'Central Africa'],
+              ['CM', 7, 'Western Africa'],
               ['CA', 19, 'Northern America'],
               ['CU', 17, 'Caribbean'],
               ['CV', 9, 'Western Africa'],
@@ -70,6 +70,7 @@
               ['DO', 17, 'Caribbean'],
               ['EC', 16, 'South America'],
               ['EG', 8, 'Northern Africa'],
+              ['EH', 8, 'Northern Africa'],
               ['SV', 18, 'Central America'],
               ['GQ', 7, 'Central Africa'],
               ['ER', 6, 'Eastern Africa'],
@@ -83,6 +84,7 @@
               ['GE', 5, 'Western Asia'],
               ['DE', 12, 'Western Europe'],
               ['GH', 9, 'Western Africa'],
+              ['GL', 11, 'Northern Europe'],
               ['GR', 14, 'Southern Europe'],
               ['GD', 17, 'Caribbean'],
               ['GT', 18, 'Central America'],
@@ -208,10 +210,12 @@
         ]);
 
         var options = {};
+        options['showLegend']= false;
         options['dataMode'] = 'regions';
-        options['colors']= [0xff0000, 0x0000ff, 0xaa0011, 0x1100aa, 0x550055,
-        0x330077, 0x222299, 0x552277, 0xf1221f, 0x1234ff, 0xff1234, 0x12ff35, 0xbbcc00,
-        0x6789ab, 0x648300, 0xabcdef, 0xfedcba, 0xfed123, 0x123def, 0xabc123];
+        options['colors']= [0x7777bb, 0x0000ff, 0x9999ff, 0x1111aa, 0x6666ff,
+        0xee00ee, 0xff66bb, 0x552277, 0xff77ff, 0x8834ff, 0xff1234, 0x12ffbb,
+        0xbbcc00, 0x6789ab, 0x648300, 0xff0000, 0xfedcba, 0xfed123, 0xedcba1,
+        0xaa9988];
         
         var container = document.getElementById('regions_div');
         var geomap = new google.visualization.GeoMap(container);
