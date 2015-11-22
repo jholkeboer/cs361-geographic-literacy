@@ -248,6 +248,7 @@
           ['Russian Federation', 15],
           ['Slovakia', 15],
           ['Ukraine', 15],
+          ['Moldova', 15],
           ['Aland Islands', 16],
           ['Channel Islands', 16],
           ['Denmark', 16],
@@ -284,7 +285,8 @@
           ['Serbia', 17],
           ['Slovenia', 17],
           ['Spain', 17],
-          ['The former Yugoslav Republic of Macedonia', 17],
+          ['Macedonia', 17],
+          ['Kosovo', 17],
           ['Austria', 18],
           ['Belgium', 18],
           ['France', 18],
@@ -330,10 +332,10 @@
 
         var options = {
           displayMode: 'regions',
-          region: '019',
+          region: '150',
           enableRegionInteractivity: true,
           backgroundColor: '#81d4fa',
-          width: '1000px',
+          width: '600px',
           resolution: 'countries',
           legend: 'none',
           magnifyingGlass: {enable: true, zoomFactor: 7.5},
@@ -353,20 +355,18 @@
     </script>
   </head>
   <body>
-     <nav class="navbar navbar-default">
+   <nav class="navbar navbar-default">
         Facilitating Geographic Literacy&nbsp;&nbsp;&nbsp;
         <a href="index.html">Back to Home</a>&nbsp;|&nbsp;
         <a href="world-view.html">World View</a>&nbsp;|&nbsp;
         <a href="at-a-glance.html">At a glance</a>&nbsp;|&nbsp;
         <a href="region-view.html">Regions</a>
     </nav>
-    
 
-
-    <h2>Regions of the Americas</h2>
+    <h2>Regions of Europe</h2>
     <div id="regions_div" style="width: 900px; height: 500px;"></div>
 
-     <!--  LEGEND of regions within   -->
+   <!--  LEGEND of regions within   -->
     <table id="regionLegend">
         <tr>
           <th>Region</th>
@@ -375,29 +375,29 @@
           <th>Region Code</th>
         </tr>
         <tr>
-          <td>Caribbean</td>
-          <td>6</td> 
-          <td>Central America</td>
-          <td>7</td> 
+          <td>Eastern Europe</td>
+          <td>15</td> 
+          <td>Northern Europe</td>
+          <td>16</td> 
         </tr>
          <tr>
-          <td>South America</td>
-          <td>8</td> 
-          <td>Northern America</td>
-          <td>9</td> 
+          <td>Southern Europe</td>
+          <td>17</td> 
+          <td>Western Europe</td>
+          <td>18</td> 
         </tr>
-
       </table>
+
         <!--       Navigation of regional views      -->
     <nav id="regionNavigation" class="clearfix">
-      <ul>
-        <li><a href="region2.html">World View of Regions</a></li>
-        <li><a href="regionAfrica.html">Regions in Africa</a></li>
-        <!--<li><a href="regionAmericas.html">Regions in the Americas</a></li>-->
-        <li><a href="regionAsia.html">Regions in Asia</a></li>
-        <li><a href="regionEurope.html">Regions in Europe</a></li>
-        <li><a href="regionOceania.html">Regions in Oceania</a></li>
-      </ul>
+    <ul>
+      <li><a href="region-view.html">World View of Regions</a></li>
+      <li><a href="regionAfrica.html">Regions in Africa</a></li>
+      <li><a href="regionAmericas.html">Regions in the Americas</a></li>
+      <li><a href="regionAsia.html">Regions in Asia</a></li>
+      <!--<li><a href="regionEurope.html">Regions in Europe</a></li>-->
+      <li><a href="regionOceania.html">Regions in Oceania</a></li>
+    </ul>
     </nav>
   </body>
 </html>

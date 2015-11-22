@@ -330,12 +330,13 @@
 
         var options = {
           displayMode: 'regions',
-          region: '002',
+          region: '019',
           enableRegionInteractivity: true,
           backgroundColor: '#81d4fa',
-          width: '600px',
+          width: '1000px',
           resolution: 'countries',
           legend: 'none',
+          magnifyingGlass: {enable: true, zoomFactor: 7.5},
           tooltip: {showColorCode: false},
           colorAxis: {colors: ['#F21CDF', '#C64FA4', '#9743AB', '#C32399', '#CA59FF',
         '#FBCF32', '#EDCB99', '#FEB79B', '#AA9988', '#7777BB', 
@@ -359,40 +360,40 @@
         <a href="at-a-glance.html">At a glance</a>&nbsp;|&nbsp;
         <a href="region-view.html">Regions</a>
     </nav>
+    
 
-    <h2>Regions in Africa</h2>
-    <div id="regions_div" style="width: 900px; "></div>
 
-   
-      <table id="regionLegend">
+    <h2>Regions of the Americas</h2>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+
+     <!--  LEGEND of regions within   -->
+    <table id="regionLegend">
         <tr>
           <th>Region</th>
           <th>Region Code</th>
           <th>Region</th>
           <th>Region Code</th>
-          <th>Region</th>
-          <th>Region Code</th>          
         </tr>
         <tr>
-          <td>Eastern Africa</td>
-          <td>1</td> 
-          <td>Central Africa</td>
-          <td>2</td>
-          <td>Northern Africa</td>
-          <td>3</td>  
+          <td>Caribbean</td>
+          <td>6</td> 
+          <td>Central America</td>
+          <td>7</td> 
         </tr>
          <tr>
-          <td>Southern Africa</td>
-          <td>4</td>
-          <td>Western Africa</td>
-          <td>5</td> 
+          <td>South America</td>
+          <td>8</td> 
+          <td>Northern America</td>
+          <td>9</td> 
+        </tr>
+
       </table>
         <!--       Navigation of regional views      -->
     <nav id="regionNavigation" class="clearfix">
       <ul>
-        <li><a href="region2.html">World View of Regions</a></li>
-        <!--<li><a href="regionAfrica.html">Regions in Africa</a></li>-->
-        <li><a href="regionAmericas.html">Regions in the Americas</a></li>
+        <li><a href="region-view.html">World View of Regions</a></li>
+        <li><a href="regionAfrica.html">Regions in Africa</a></li>
+        <!--<li><a href="regionAmericas.html">Regions in the Americas</a></li>-->
         <li><a href="regionAsia.html">Regions in Asia</a></li>
         <li><a href="regionEurope.html">Regions in Europe</a></li>
         <li><a href="regionOceania.html">Regions in Oceania</a></li>
