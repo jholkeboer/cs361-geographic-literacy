@@ -267,15 +267,16 @@
           displayMode: 'regions',
           region: '009',
           enableRegionInteractivity: true,
-          width: '1000px',
+          backgroundColor:{fill: '#81d4fa', strokeWidth: '7'},
+          width: '600px',
           resolution: 'countries',
           legend: 'none',
-          magnifyingGlass: {enable: true, zoomFactor: 7.5},
           tooltip: {showColorCode: false},
-          colorAxis: {colors: ['#0040FF', '#FFBF00', '#00FF40', '#FF00BF', '#4BFFFF',
-        '#A54BFF', '#A5FF4B', '#552277', '#4F8AFF', '#FF9933', '#99CC66', '#FF3333', '#bbcc00',
-        '#6789ab', '#648300', '#abcdef', '#fedcba', '#fed123', '#CC99FF', '#33FF33', 
-        '#FFCC99', '#99FFFF' ],
+          colorAxis: {colors: ['#F21CDF', '#C64FA4', '#9743AB', '#C32399', '#CA59FF',
+        '#FBCF32', '#EDCB99', '#FEB79B', '#AA9988', '#7777BB', 
+        '#0707F1', '#8989F5', '#1F1FB8', '#6789ab', '#839F71', 
+        '#7B957E', '#64842F', '#79DF48', '#DC1D00', '#FF9900', 
+        '#FFCC00', '#000000' ],
         values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]}
         };
 
@@ -286,7 +287,10 @@
     </script>
   </head>
   <body>
-  <nav id="navigation" class="clearfix">
+  
+    <h1>Facilitating Geographic Literacy</h1>
+    <h2>Regions of Oceania</h2>
+    <nav id="navigation" class="clearfix">
   <ul>
     <li><a href="region2.html">World View of Regions</a></li>
     <li><a href="regionAfrica.html">Africa</a></li>
@@ -296,8 +300,6 @@
     <li><a href="regionOceania.html">Oceania</a></li>
   </ul>
 </nav>
-    <h1>Facilitating Geographic Literacy</h1>
-    <h2>Regions of Oceania</h2>
     <div id="regions_div" style="width: 900px; height: 500px;"></div>
 
    
