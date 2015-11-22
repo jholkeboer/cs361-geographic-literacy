@@ -167,6 +167,7 @@
               ['SG', 4, 'Southeastern Asia'],
               ['SK', 13, 'Eastern Europe'],
               ['SI', 14, 'Southern Europe'],
+              ['SJ', 11, 'Northern Europe'],
               ['SB', 15, 'Oceania'],
               ['ZA', 10, 'Southern Africa'],
               ['ES', 14, 'Southern Europe'],
@@ -212,6 +213,8 @@
         var options = {};
         options['showLegend']= false;
         options['dataMode'] = 'regions';
+        options['width'] = 600;
+        options['height']= 400; 
         options['colors']= [0x7777bb, 0x0000ff, 0x9999ff, 0x1111aa, 0x6666ff,
         0xee00ee, 0xff66bb, 0x552277, 0xff77ff, 0x8834ff, 0xff1234, 0x12ffbb,
         0xbbcc00, 0x6789ab, 0x648300, 0xff0000, 0xfedcba, 0xfed123, 0xedcba1,
@@ -232,7 +235,10 @@
         <a href="at-a-glance.html">At a glance</a>&nbsp;|&nbsp;
         <a href="region-view.html">Regions</a>
     </nav>
-    <h2>UN Geoscheme Regions</h2>
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+   
+    <div  style="width: 600px; height: 300px;">
+       <h2>UN Geoscheme Regions</h2>
+       <div id="regions_div"/>
+     </div>
   </body>
 </html>
