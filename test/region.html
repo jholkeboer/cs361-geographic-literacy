@@ -8,7 +8,7 @@
       function drawMap() {
         var data = google.visualization.arrayToDataTable([
           ['Country','Region', 'Region'],
-	  ['AF', 3, 'Southern Asia'],
+	     ['AF', 3, 'Southern Asia'],
           ['AL', 14, 'Southern Europe'],
               ['DZ', 8, 'Northern Africa'],
               ['AO', 7, 'Central Africa'],
@@ -36,7 +36,7 @@
               ['BF', 9, 'Western Africa'],
               ['BI', 6, 'Eastern Africa'],
               ['KH', 4, 'Southeast Asia'],
-              ['CM', 6, 'Central Africa'],
+              ['CM', 7, 'Central Africa'],
               ['CA', 19, 'Northern America'],
               ['CU', 17, 'Caribbean'],
               ['CV', 9, 'Western Africa'],
@@ -196,22 +196,35 @@
 
         ]);
 
+    
         var options = {};
         options['dataMode'] = 'regions';
         options['colors']= [0xff0000, 0x0000ff, 0xaa0011, 0x1100aa, 0x550055,
-        0x330077, 0x222299, 0x552277, 0xf1221f, 0x1234ff, 0xff1234, 0x12ff35, 0xbbcc00,
+        0x330077, 0xFF6161, 0x552277, 0xf1221f, 0x1234ff, 0xff1234, 0x12ff35, 0xbbcc00,
         0x6789ab, 0x648300, 0xabcdef, 0xfedcba, 0xfed123, 0x123def, 0xabc123];
-        
+        options['width']='1000px';
+        options['height']='600px';
+        options['showLegend']=false;
+        options['showZoomOut']=true;
+        // to view at region level we have to set the region option to a region code options['region']='region code';
+      
+
         var container = document.getElementById('regions_div');
         var geomap = new google.visualization.GeoMap(container);
-
         geomap.draw(data, options);
+
+        
       };
+      
+
+       
+
     </script>
   </head>
   <body>
     <h1>Facilitating Geographic Literacy</h1>
     <h2>UN Geoscheme Regions</h2>
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    <div id="regions_div" style="width: 1000px; height: 600px;"></div>
+
   </body>
 </html>
