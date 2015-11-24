@@ -6,7 +6,7 @@
             font: .875em/1.618 Helvetica, Sans-serif; 
           }
           #regionNavigation {
-            background-color: #2800AD;
+            background-color: #eee;
             max-width: 900px;
           }
           #regionNavigation ul {
@@ -15,7 +15,7 @@
           }
           #regionNavigation li {
             border-right: 1px solid #ddd;
-            display: line-block;
+            display: inline-block;
             float: left;
             margin: 0;
           }
@@ -46,7 +46,9 @@
             text-align: center;
           }
           .clearfix {
-            *zoom: 1;
+            -ms-transform: scale(1,1); /* IE 9 */
+            -webkit-transform: scale(1,1); /* Safari */
+            transform: scale(1,1);
           }
           .clearfix:after, 
           .clearfix:before {
