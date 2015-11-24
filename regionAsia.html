@@ -1,61 +1,6 @@
+<!DOCTYPE html>
 <html>
   <head>
-      <style>
-          body { 
-            font: .875em/1.618 Helvetica, Sans-serif; 
-          }
-          #regionNavigation {
-            background-color: #2800AD;
-            max-width: 900px;
-          }
-          #regionNavigation ul {
-            margin: 0;
-            padding: 0; 
-          }
-          #regionNavigation li {
-            border-right: 1px solid #ddd;
-            display: line-block;
-            float: left;
-            margin: 0;
-          }
-          #regionNavigation li:last-child {
-            border-right-width: 0;
-          }
-          #regionNavigation a {
-            background-color: #eee;
-            color: #2800AD;
-            display: block;
-            padding: .75em 1.5em;
-            text-decoration: none;
-            transition: all .25s ease-in-out;
-            -moz-transition: all .25s ease-in-out;
-            -webkit-transition: all .25s ease-in-out;
-          }
-          #regionNavigation a:hover {
-            background-color: #ddd;
-          }
-
-          #regionLegend {
-              background-color: #fff;
-          }
-          #regionLegend th{
-            text-align: center;
-          }
-          #regionLegend td{
-            text-align: center;
-          }
-          .clearfix {
-            *zoom: 1;
-          }
-          .clearfix:after, 
-          .clearfix:before {
-            content: '';
-            display: table;
-          }
-          .clearfix:after {
-            clear: both;
-          }
-    </style>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -352,6 +297,59 @@
         chart.draw(data, options);
       }
     </script>
+    <style>
+          body { 
+            font: .875em/1.618 Helvetica, Sans-serif; 
+          }
+          #regionNavigation {
+            background-color: #eee;
+            max-width: 900px;
+          }
+          #regionNavigation ul {
+            margin: 0;
+            padding: 0; 
+          }
+          #regionNavigation li {
+            border-right: 1px solid #ddd;
+            display: inline-block;
+            float: left;
+            margin: 0;
+          }
+          #regionNavigation li:last-child {
+            border-right-width: 0;
+          }
+          #regionNavigation a {
+            background-color: #eee;
+            color: #2800AD;
+            display: block;
+            padding: .75em 1.5em;
+            text-decoration: none;
+            transition: all .25s ease-in-out;
+            -moz-transition: all .25s ease-in-out;
+            -webkit-transition: all .25s ease-in-out;
+          }
+          #regionNavigation a:hover {
+            background-color: #ddd;
+          }
+
+          #regionLegend {
+              background-color: #fff;
+          }
+          #regionLegend th{
+            text-align: center;
+          }
+          #regionLegend td{
+            text-align: center;
+          }
+
+          .clearfix:after, 
+          .clearfix:before {
+            content: '';
+            display: table;
+            clear: both;
+          }
+
+    </style>
   </head>
   <body>
   <nav class="navbar navbar-default">
@@ -388,6 +386,8 @@
         <td>13</td> 
         <td>Western Asia</td>
         <td>14</td> 
+        <td></td>
+        <td></td>
     </table>
 
         <!--       Navigation of regional views      -->
