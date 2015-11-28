@@ -29,9 +29,9 @@ function getNewsOnClick(countryName) {
     });
 }
 
-function getOverview(iso3) {
+function getOverview(iso3, contentString) {
     $('#country-basics').html("<ul><li id='population'></li><li id='gdp'></li></ul>")
-    getGDPOnClick(iso3)
+    getGDPOnClick(iso3, contentString)
     getPOPOnClick(iso3)
 }
 
@@ -96,14 +96,15 @@ function processweather(data) {
 }
 
 function processGDP(data) {
-    console.log("processGDP");
-    console.log(data);
+   // console.log("processGDP");
+    //console.log(data);
     
     gdp = JSON.parse(data);
-    console.log(gdp);
-    console.log(gdp[1][0].value);
+   // console.log(gdp);
+   // console.log(gdp[1][0].value);
     
     gdp = gdp[1][0].value;
+    contentString = gdp
     $('#country-basics').append($('<ul>').append($('#gdp')).append('<b>GDP</b>: ' + gdp))
 }
 
@@ -254,7 +255,7 @@ function initialize() {
                     headingP.innerHTML = country.long_name;
                     
                     $('#country-name').text(country.long_name);
-                    
+
                     $('#country-info-panel').css({'display': "inline"});
                 }
                 if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
