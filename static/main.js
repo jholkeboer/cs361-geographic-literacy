@@ -29,9 +29,9 @@ function getNewsOnClick(countryName) {
     });
 }
 
-function getOverview(iso3, contentString) {
+function getOverview(iso3) {
     $('#country-basics').html("<ul><li id='population'></li><li id='gdp'></li></ul>")
-    getGDPOnClick(iso3, contentString)
+    getGDPOnClick(iso3)
     getPOPOnClick(iso3)
 }
 
@@ -57,7 +57,7 @@ function getPOPOnClick(iso3) {
 
 function getWeather(iso3) {
 
-//  console.log('weather for ' + iso3);
+  console.log('weather for ' + iso3);
   var weatherApi = 'http://climatedataapi.worldbank.org/climateweb/rest/v1/country/mavg/tas/1980/1999/'
   var weatherApiEnd = '.json?callback=processweather'
   $.ajax({
@@ -96,15 +96,14 @@ function processweather(data) {
 }
 
 function processGDP(data) {
-   // console.log("processGDP");
-    //console.log(data);
+    console.log("processGDP");
+    console.log(data);
     
     gdp = JSON.parse(data);
-   // console.log(gdp);
-   // console.log(gdp[1][0].value);
+    console.log(gdp);
+    console.log(gdp[1][0].value);
     
     gdp = gdp[1][0].value;
-    contentString = gdp
     $('#country-basics').append($('<ul>').append($('#gdp')).append('<b>GDP</b>: ' + gdp))
 }
 
