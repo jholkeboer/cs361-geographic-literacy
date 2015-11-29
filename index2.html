@@ -10,11 +10,6 @@
         <script src="bower_components/bootstrap/js/tab.js"></script>
         <script src="static/countries.js"></script>
         <script src="static/main.js"></script>
-        <style>
-          #country-basics li {
-            list-style-type: none;
-          }
-        </style>
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">    
             <script type="text/javascript">
 
@@ -84,23 +79,7 @@
                     $.ajax({
                       url: geoloc,
                       dataType: 'json',
-                      success: function(d) {
-                       var data = d.results[0].address_components
-                       for(var i = 0; i < data.length; i++)
-                       {
-                         if(data[i].types[0] == 'country') {
-                           var countryName = data[i].long_name
-                           var iso3 = getIso3ByName(countryName);
-                            var infowindow = new google.maps.InfoWindow({
-                              content: countryName
-                            });
-                            infowindow.open(map, markers[0]);
-                           getOverview(iso3)
-                           getWeather(iso3)
-                           getNewsOnClick(countryName);
-                         }
-                       }
-                      }
+                      success: getCountryName
                     });
                     
                     markers.push(new google.maps.Marker({
@@ -109,6 +88,10 @@
                       title: 'Click to zoom'
                     }))
                     
+                    var infowindow = new google.maps.InfoWindow({
+                      content: contentString
+                    });
+                    infowindow.open(map, markers[0]);
                   });
                 }
 

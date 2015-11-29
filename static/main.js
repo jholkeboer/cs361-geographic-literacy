@@ -57,7 +57,7 @@ function getPOPOnClick(iso3) {
 
 function getWeather(iso3) {
 
-//  console.log('weather for ' + iso3);
+  console.log('weather for ' + iso3);
   var weatherApi = 'http://climatedataapi.worldbank.org/climateweb/rest/v1/country/mavg/tas/1980/1999/'
   var weatherApiEnd = '.json?callback=processweather'
   $.ajax({
@@ -254,7 +254,7 @@ function initialize() {
                     headingP.innerHTML = country.long_name;
                     
                     $('#country-name').text(country.long_name);
-                    
+
                     $('#country-info-panel').css({'display': "inline"});
                 }
                 if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
