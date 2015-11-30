@@ -284,9 +284,9 @@
           magnifyingGlass: {enable: true, zoomFactor: 7.5},
           tooltip: {showColorCode: false},
           colorAxis: {colors: ['#F21CDF', '#C64FA4', '#9743AB', '#C32399', '#CA59FF',
-        '#FBCF32', '#EDCB99', '#FEB79B', '#AA9988', '#7777BB', 
-        '#0707F1', '#8989F5', '#1F1FB8', '#6789ab', '#839F71', 
-        '#7B957E', '#64842F', '#79DF48', '#DC1D00', '#FF9900', 
+        '#FBCF32', '#EDCB99', '#FEB79B', '#AA9988', '#7777BB',
+        '#0707F1', '#8989F5', '#1F1FB8', '#6789ab', '#839F71',
+        '#7B957E', '#64842F', '#79DF48', '#DC1D00', '#FF9900',
         '#FFCC00', '#FFFF00' ],
         values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]}
         };
@@ -294,7 +294,32 @@
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
         chart.draw(data, options);
+
+        google.visualization.events.addListener(chart, 'select', function() {
+          //console.log(chart.getSelection()[0]["row"]);
+          var row = chart.getSelection()[0]["row"];
+          //console.log(row);
+          var region = data["Gf"][row]["c"][1].v;
+          //console.log(region);
+          //console.log(data["Gf"][row]["c"][1]);
+          setRegionInfo(region);
+
+        });
       }
+
+        var regionAbout = "<p id='population'></p><p id='history'></p>";
+        var regionSpecificInfo = [
+                                  ["A lot of people", "A ton of stuff"],
+                                  ["So many people", "A decent amount of stuff"],
+                                  ["Not many folks", "Some stuff"]
+                                 ]
+
+        function setRegionInfo(region) {
+           document.getElementById('regions_info_panel').innerHTML = regionAbout;
+           document.getElementById('population').innerHTML = "Population: " + regionSpecificInfo[region-1][0];
+           document.getElementById('history').innerHTML = "History: " + regionSpecificInfo[region-1][1];
+        }
+
     </script>
         <style>
           #regionNavigation {
@@ -303,7 +328,7 @@
           }
           #regionNavigation ul {
             margin: 0;
-            padding: 0; 
+            padding: 0;
           }
           #regionNavigation li {
             border-right: 1px solid #ddd;
@@ -338,7 +363,42 @@
             text-align: center;
           }
 
-          .clearfix:after, 
+          #title_container {
+            width: 1300px;
+            font-size: 200%;
+            margin: auto;
+          }
+
+          #geoscheme_title {
+            width: 900px;
+            float: left;
+            height: 50px;
+          }
+
+          #region_info_title {
+            width:  400px;
+            float: left;
+            height: 50px;
+          }
+
+          #region_container {
+            width: 1300px;
+            margin: auto;
+          }
+
+          #regions_div {
+            width: 900px;
+            float: left;
+            height: 500px;
+          }
+
+          #regions_info_panel {
+            width:  400px;
+            float: left;
+            height: 500px;
+          }
+
+          .clearfix:after,
           .clearfix:before {
             content: '';
             display: table;
@@ -353,13 +413,17 @@
         <a href="index.html">Back to Home</a>&nbsp;|&nbsp;
         <a href="world-view.html">World View</a>&nbsp;|&nbsp;
         <a href="at-a-glance.html">At a glance</a>&nbsp;|&nbsp;
-        <a href="quiz.html">Quiz</a>&nbsp;|&nbsp;
         <a href="region-view.html">Regions</a>
     </nav>
-   
-     <h2>UN Geoscheme of Regions</h2>
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+   <div id="title_container">
+    <div id="geoscheme_title">UN Geoscheme of Regions</div>
+    <div id="region_info_title">Region Info:</div>
+   </div>
+    <div id="region_container">
+      <div id="regions_div"></div>
      <!--       Navigation of regional views      -->
+      <div id="regions_info_panel">
+    </div>
     <nav id="regionNavigation" class="clearfix">
     <ul>
       <!--<li><a href="region2.html">World View of Regions</a></li>-->
