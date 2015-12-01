@@ -16,264 +16,266 @@
       google.load("visualization", "1", {packages:["geochart"]});
       google.setOnLoadCallback(drawRegionsMap);
 
+      var countriesToRegionMapping = [
+        ['Country', 'Region Code'],
+        ['Burundi', 1],
+        ['Comoros', 1],
+        ['Djibouti', 1],
+        ['Eritrea', 1],
+        ['Ethiopia', 1],
+        ['Kenya', 1],
+        ['Madagascar', 1],
+        ['Malawi', 1],
+        ['Mauritius', 1],
+        ['Mayotte', 1],
+        ['Mozambique', 1],
+        ['Reunion', 1],
+        ['Rwanda', 1],
+        ['Seychelles', 1],
+        ['Somalia', 1],
+        ['South Sudan', 1],
+        ['Uganda', 1],
+        ['United Republic of Tanzania', 1],
+        ['Zambia', 1],
+        ['Zimbabwe', 1],
+        ['Angola', 2],
+        ['Cameroon', 2],
+        ['Central African Republic', 2],
+        ['Chad', 2],
+        ['Congo', 2],
+        ['Democratic Republic of the Congo', 2],
+        ['Equatorial Guinea', 2],
+        ['Gabon', 2],
+        ['Sao Tome and Principe', 2],
+        ['Algeria', 3],
+        ['Egypt', 3],
+        ['Libya', 3],
+        ['Morocco', 3],
+        ['Sudan', 3],
+        ['Tunisia', 3],
+        ['Western Sahara', 3],
+        ['Botswana', 4],
+        ['Lesotho', 4],
+        ['Namibia', 4],
+        ['South Africa', 4],
+        ['Swaziland', 4],
+        ['Benin', 5],
+        ['Burkina Faso', 5],
+        ['Cabo Verde', 5],
+        ['Cote d Ivoire', 5],
+        ['Gambia', 5],
+        ['Ghana', 5],
+        ['Guinea', 5],
+        ['Guinea-Bissau', 5],
+        ['Liberia', 5],
+        ['Mali', 5],
+        ['Mauritania', 5],
+        ['Niger', 5],
+        ['Nigeria', 5],
+        ['Saint Helena', 5],
+        ['Senegal', 5],
+        ['Sierra Leone', 5],
+        ['Togo', 5],
+        ['Anguilla', 6],
+        ['Antigua and Barbuda', 6],
+        ['Aruba', 6],
+        ['Bahamas', 6],
+        ['Barbados', 6],
+        ['Bonaire', 6],
+        ['British Virgin Islands', 6],
+        ['Cayman Islands', 6],
+        ['Cuba', 6],
+        ['Curacao', 6],
+        ['Dominica', 6],
+        ['Dominican Republic', 6],
+        ['Grenada', 6],
+        ['Guadeloupe', 6],
+        ['Haiti', 6],
+        ['Jamaica', 6],
+        ['Martinique', 6],
+        ['Montserrat', 6],
+        ['Puerto Rico', 6],
+        ['Saint-Bartholemy', 6],
+        ['Saint Kitts and Nevis', 6],
+        ['Saint Lucia', 6],
+        ['Saint Martin', 6],
+        ['Saint Vincent and the Grenadines', 6],
+        ['Sint Maarten', 6],
+        ['Trinidad and Tobago', 6],
+        ['Turks and Caicos Islands', 6],
+        ['United States Virgin Islands', 6],
+        ['Belize', 7],
+        ['Costa Rica', 7],
+        ['El Salvador', 7],
+        ['Guatemala', 7],
+        ['Honduras', 7],
+        ['Mexico', 7],
+        ['Nicaragua', 7],
+        ['Panama', 7],
+        ['Argentina', 8],
+        ['Bolivia', 8],
+        ['Brazil', 8],
+        ['Chile', 8],
+        ['Colombia', 8],
+        ['Ecuador', 8],
+        ['Falkland Islands', 8],
+        ['French Guiana', 8],
+        ['Guyana', 8],
+        ['Paraguay', 8],
+        ['Peru', 8],
+        ['Suriname', 8],
+        ['Uruguay', 8],
+        ['Venezuela', 8],
+        ['Bermuda', 9],
+        ['Canada', 9],
+        ['Greenland', 9],
+        ['Saint Pierre and Miquelon', 9],
+        ['United States of America', 9],
+        ['Kazakhstan', 10],
+        ['Kyrgyzstan', 10],
+        ['Tajikistan', 10],
+        ['Turkmenistan', 10],
+        ['Uzbekistan', 10],
+        ['China', 11],
+        ['South Korea', 11],
+        ['Japan', 11],
+        ['Mongolia', 11],
+        ['North Korea', 11],
+        ['Taiwan', 11],
+        ['Afghanistan', 12],
+        ['Bangladesh', 12],
+        ['Bhutan', 12],
+        ['India', 12],
+        ['Iran', 12],
+        ['Maldives', 12],
+        ['Nepal', 12],
+        ['Pakistan', 12],
+        ['Sri Lanka', 12],
+        ['Brunei Darussalam', 13],
+        ['Cambodia', 13],
+        ['Indonesia', 13],
+        ['Lao Peoples Democratic Republic', 13],
+        ['Malaysia', 13],
+        ['Myanmar', 13],
+        ['Philippines', 13],
+        ['Singapore', 13],
+        ['Thailand', 13],
+        ['Timor-Leste', 13],
+        ['Viet Nam', 13],
+        ['Armenia', 14],
+        ['Azerbaijan', 14],
+        ['Bahrain', 14],
+        ['Cyprus', 14],
+        ['Georgia', 14],
+        ['Iraq', 14],
+        ['Israel', 14],
+        ['Jordan', 14],
+        ['Kuwait', 14],
+        ['Lebanon', 14],
+        ['Oman', 14],
+        ['Qatar', 14],
+        ['Saudi Arabia', 14],
+        ['State of Palestine', 14],
+        ['Syrian Arab Republic', 14],
+        ['Turkey', 14],
+        ['United Arab Emirates', 14],
+        ['Yemen', 14],
+        ['Belarus', 15],
+        ['Bulgaria', 15],
+        ['Czech Republic', 15],
+        ['Hungary', 15],
+        ['Poland', 15],
+        ['Republic of Moldova', 15],
+        ['Romania', 15],
+        ['Russian Federation', 15],
+        ['Slovakia', 15],
+        ['Ukraine', 15],
+        ['Aland Islands', 16],
+        ['Channel Islands', 16],
+        ['Denmark', 16],
+        ['Estonia', 16],
+        ['Faeroe Islands', 16],
+        ['Finland', 16],
+        ['Guernsey', 16],
+        ['Iceland', 16],
+        ['Ireland', 16],
+        ['Isle of Man', 16],
+        ['Jersey', 16],
+        ['Latvia', 16],
+        ['Lithuania', 16],
+        ['Norway', 16],
+        ['Sark', 16],
+        ['SVALBARD', 16],
+        ['Jan Mayen Islands', 16],
+        ['Sweden', 16],
+        ['United Kingdom', 16],
+        ['Northern Ireland', 16],
+        ['Great Britain',16],
+        ['Albania', 17],
+        ['Andorra', 17],
+        ['Bosnia and Herzegovina', 17],
+        ['Croatia', 17],
+        ['Moldova', 15],
+        ['Gibraltar', 17],
+        ['Greece', 17],
+        ['Holy See', 17],
+        ['Italy', 17],
+        ['Malta', 17],
+        ['Montenegro', 17],
+        ['Portugal', 17],
+        ['San Marino', 17],
+        ['Serbia', 17],
+        ['Slovenia', 17],
+        ['Spain', 17],
+        ['Macedonia', 17],
+        ['Kosovo', 17],
+        ['Austria', 18],
+        ['Belgium', 18],
+        ['France', 18],
+        ['Germany', 18],
+        ['Liechtenstein', 18],
+        ['Luxembourg', 18],
+        ['Monaco', 18],
+        ['Netherlands', 18],
+        ['Switzerland', 18],
+        ['Australia', 19],
+        ['New Zealand', 19],
+        ['Norfolk Island', 19],
+        ['Fiji', 20],
+        ['New Caledonia', 20],
+        ['Papua New Guinea', 20],
+        ['Solomon Islands', 20],
+        ['Vanuatu', 20],
+        ['Guam', 21],
+        ['Kiribati', 21],
+        ['Marshall Islands', 21],
+        ['Micronesia', 21],
+        ['Nauru', 21],
+        ['Northern Mariana Islands', 21],
+        ['Palau', 21],
+        ['American Samoa', 22],
+        ['Cook Islands', 22],
+        ['French Polynesia', 22],
+        ['Niue', 22],
+        ['Pitcairn', 22],
+        ['Samoa', 22],
+        ['Tokelau', 22],
+        ['Tonga', 22],
+        ['Tuvalu', 22],
+        ['Wallis and Futuna Islands', 22],
+        ['Niue', 22],
+        ['Pitcairn', 22],
+        ['Samoa', 22],
+        ['Tokelau', 22],
+        ['Tonga', 22],
+        ['Tuvalu', 22],
+        ['Wallis and Futuna Islands', 22]
+      ];
+
       function drawRegionsMap() {
 
 
-        var data = google.visualization.arrayToDataTable([
-          ['Country', 'Region Code'],
-          ['Burundi', 1],
-          ['Comoros', 1],
-          ['Djibouti', 1],
-          ['Eritrea', 1],
-          ['Ethiopia', 1],
-          ['Kenya', 1],
-          ['Madagascar', 1],
-          ['Malawi', 1],
-          ['Mauritius', 1],
-          ['Mayotte', 1],
-          ['Mozambique', 1],
-          ['Reunion', 1],
-          ['Rwanda', 1],
-          ['Seychelles', 1],
-          ['Somalia', 1],
-          ['South Sudan', 1],
-          ['Uganda', 1],
-          ['United Republic of Tanzania', 1],
-          ['Zambia', 1],
-          ['Zimbabwe', 1],
-          ['Angola', 2],
-          ['Cameroon', 2],
-          ['Central African Republic', 2],
-          ['Chad', 2],
-          ['Congo', 2],
-          ['Democratic Republic of the Congo', 2],
-          ['Equatorial Guinea', 2],
-          ['Gabon', 2],
-          ['Sao Tome and Principe', 2],
-          ['Algeria', 3],
-          ['Egypt', 3],
-          ['Libya', 3],
-          ['Morocco', 3],
-          ['Sudan', 3],
-          ['Tunisia', 3],
-          ['Western Sahara', 3],
-          ['Botswana', 4],
-          ['Lesotho', 4],
-          ['Namibia', 4],
-          ['South Africa', 4],
-          ['Swaziland', 4],
-          ['Benin', 5],
-          ['Burkina Faso', 5],
-          ['Cabo Verde', 5],
-          ['Cote d Ivoire', 5],
-          ['Gambia', 5],
-          ['Ghana', 5],
-          ['Guinea', 5],
-          ['Guinea-Bissau', 5],
-          ['Liberia', 5],
-          ['Mali', 5],
-          ['Mauritania', 5],
-          ['Niger', 5],
-          ['Nigeria', 5],
-          ['Saint Helena', 5],
-          ['Senegal', 5],
-          ['Sierra Leone', 5],
-          ['Togo', 5],
-          ['Anguilla', 6],
-          ['Antigua and Barbuda', 6],
-          ['Aruba', 6],
-          ['Bahamas', 6],
-          ['Barbados', 6],
-          ['Bonaire', 6],
-          ['British Virgin Islands', 6],
-          ['Cayman Islands', 6],
-          ['Cuba', 6],
-          ['Curacao', 6],
-          ['Dominica', 6],
-          ['Dominican Republic', 6],
-          ['Grenada', 6],
-          ['Guadeloupe', 6],
-          ['Haiti', 6],
-          ['Jamaica', 6],
-          ['Martinique', 6],
-          ['Montserrat', 6],
-          ['Puerto Rico', 6],
-          ['Saint-Bartholemy', 6],
-          ['Saint Kitts and Nevis', 6],
-          ['Saint Lucia', 6],
-          ['Saint Martin', 6],
-          ['Saint Vincent and the Grenadines', 6],
-          ['Sint Maarten', 6],
-          ['Trinidad and Tobago', 6],
-          ['Turks and Caicos Islands', 6],
-          ['United States Virgin Islands', 6],
-          ['Belize', 7],
-          ['Costa Rica', 7],
-          ['El Salvador', 7],
-          ['Guatemala', 7],
-          ['Honduras', 7],
-          ['Mexico', 7],
-          ['Nicaragua', 7],
-          ['Panama', 7],
-          ['Argentina', 8],
-          ['Bolivia', 8],
-          ['Brazil', 8],
-          ['Chile', 8],
-          ['Colombia', 8],
-          ['Ecuador', 8],
-          ['Falkland Islands', 8],
-          ['French Guiana', 8],
-          ['Guyana', 8],
-          ['Paraguay', 8],
-          ['Peru', 8],
-          ['Suriname', 8],
-          ['Uruguay', 8],
-          ['Venezuela', 8],
-          ['Bermuda', 9],
-          ['Canada', 9],
-          ['Greenland', 9],
-          ['Saint Pierre and Miquelon', 9],
-          ['United States of America', 9],
-          ['Kazakhstan', 10],
-          ['Kyrgyzstan', 10],
-          ['Tajikistan', 10],
-          ['Turkmenistan', 10],
-          ['Uzbekistan', 10],
-          ['China', 11],
-          ['South Korea', 11],
-          ['Japan', 11],
-          ['Mongolia', 11],
-          ['North Korea', 11],
-          ['Taiwan', 11],
-          ['Afghanistan', 12],
-          ['Bangladesh', 12],
-          ['Bhutan', 12],
-          ['India', 12],
-          ['Iran', 12],
-          ['Maldives', 12],
-          ['Nepal', 12],
-          ['Pakistan', 12],
-          ['Sri Lanka', 12],
-          ['Brunei Darussalam', 13],
-          ['Cambodia', 13],
-          ['Indonesia', 13],
-          ['Lao Peoples Democratic Republic', 13],
-          ['Malaysia', 13],
-          ['Myanmar', 13],
-          ['Philippines', 13],
-          ['Singapore', 13],
-          ['Thailand', 13],
-          ['Timor-Leste', 13],
-          ['Viet Nam', 13],
-          ['Armenia', 14],
-          ['Azerbaijan', 14],
-          ['Bahrain', 14],
-          ['Cyprus', 14],
-          ['Georgia', 14],
-          ['Iraq', 14],
-          ['Israel', 14],
-          ['Jordan', 14],
-          ['Kuwait', 14],
-          ['Lebanon', 14],
-          ['Oman', 14],
-          ['Qatar', 14],
-          ['Saudi Arabia', 14],
-          ['State of Palestine', 14],
-          ['Syrian Arab Republic', 14],
-          ['Turkey', 14],
-          ['United Arab Emirates', 14],
-          ['Yemen', 14],
-          ['Belarus', 15],
-          ['Bulgaria', 15],
-          ['Czech Republic', 15],
-          ['Hungary', 15],
-          ['Poland', 15],
-          ['Republic of Moldova', 15],
-          ['Romania', 15],
-          ['Russian Federation', 15],
-          ['Slovakia', 15],
-          ['Ukraine', 15],
-          ['Aland Islands', 16],
-          ['Channel Islands', 16],
-          ['Denmark', 16],
-          ['Estonia', 16],
-          ['Faeroe Islands', 16],
-          ['Finland', 16],
-          ['Guernsey', 16],
-          ['Iceland', 16],
-          ['Ireland', 16],
-          ['Isle of Man', 16],
-          ['Jersey', 16],
-          ['Latvia', 16],
-          ['Lithuania', 16],
-          ['Norway', 16],
-          ['Sark', 16],
-          ['SVALBARD', 16],
-          ['Jan Mayen Islands', 16],
-          ['Sweden', 16],
-          ['United Kingdom', 16],
-          ['Northern Ireland', 16],
-          ['Great Britain',16],
-          ['Albania', 17],
-          ['Andorra', 17],
-          ['Bosnia and Herzegovina', 17],
-          ['Croatia', 17],
-          ['Moldova', 15],
-          ['Gibraltar', 17],
-          ['Greece', 17],
-          ['Holy See', 17],
-          ['Italy', 17],
-          ['Malta', 17],
-          ['Montenegro', 17],
-          ['Portugal', 17],
-          ['San Marino', 17],
-          ['Serbia', 17],
-          ['Slovenia', 17],
-          ['Spain', 17],
-          ['Macedonia', 17],
-          ['Kosovo', 17],
-          ['Austria', 18],
-          ['Belgium', 18],
-          ['France', 18],
-          ['Germany', 18],
-          ['Liechtenstein', 18],
-          ['Luxembourg', 18],
-          ['Monaco', 18],
-          ['Netherlands', 18],
-          ['Switzerland', 18],
-          ['Australia', 19],
-          ['New Zealand', 19],
-          ['Norfolk Island', 19],
-          ['Fiji', 20],
-          ['New Caledonia', 20],
-          ['Papua New Guinea', 20],
-          ['Solomon Islands', 20],
-          ['Vanuatu', 20],
-          ['Guam', 21],
-          ['Kiribati', 21],
-          ['Marshall Islands', 21],
-          ['Micronesia', 21],
-          ['Nauru', 21],
-          ['Northern Mariana Islands', 21],
-          ['Palau', 21],
-          ['American Samoa', 22],
-          ['Cook Islands', 22],
-          ['French Polynesia', 22],
-          ['Niue', 22],
-          ['Pitcairn', 22],
-          ['Samoa', 22],
-          ['Tokelau', 22],
-          ['Tonga', 22],
-          ['Tuvalu', 22],
-          ['Wallis and Futuna Islands', 22],
-          ['Niue', 22],
-          ['Pitcairn', 22],
-          ['Samoa', 22],
-          ['Tokelau', 22],
-          ['Tonga', 22],
-          ['Tuvalu', 22],
-          ['Wallis and Futuna Islands', 22]
-        ]);
+        var data = google.visualization.arrayToDataTable(countriesToRegionMapping);
 
         var options = {
           displayMode: 'regions',
@@ -284,9 +286,9 @@
           magnifyingGlass: {enable: true, zoomFactor: 7.5},
           tooltip: {showColorCode: false},
           colorAxis: {colors: ['#F21CDF', '#C64FA4', '#9743AB', '#C32399', '#CA59FF',
-        '#FBCF32', '#EDCB99', '#FEB79B', '#AA9988', '#7777BB', 
-        '#0707F1', '#8989F5', '#1F1FB8', '#6789ab', '#839F71', 
-        '#7B957E', '#64842F', '#79DF48', '#DC1D00', '#FF9900', 
+        '#FBCF32', '#EDCB99', '#FEB79B', '#AA9988', '#7777BB',
+        '#0707F1', '#8989F5', '#1F1FB8', '#6789ab', '#839F71',
+        '#7B957E', '#64842F', '#79DF48', '#DC1D00', '#FF9900',
         '#FFCC00', '#FFFF00' ],
         values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]}
         };
@@ -294,7 +296,63 @@
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
         chart.draw(data, options);
+
+        google.visualization.events.addListener(chart, 'select', function() {
+          //console.log(chart.getSelection()[0]["row"]);
+          var selection;
+          while(!selection || !selection.length > 0) {
+              // sometimes, it comes out as undefined for no clear reason
+              selection = chart.getSelection();
+          }
+          var row = chart.getSelection()[0]["row"];
+          //console.log(row);
+          var region = data["Gf"][row]["c"][1].v;
+          //console.log(data["Gf"][row]["c"][1]);
+          setRegionInfo(region);
+
+        });
       }
+
+        var regionAbout = "<p id='population'></p><p id='history'></p><h3>Countries:</h3><ul id='countries'></ul>";
+        var regionSpecificInfo = [
+                                  ["Eastern Africa", "A lot of people", "Djibouti, Eritrea, Ethiopia, northern Somalia, and the Red Sea coast of Sudan are considered the most likely location of the land known to the Ancient Egyptians as Punt. The old kingdom's first mention dates to the 25th century BC. The ancient Puntites were a nation of people that had close relations with Pharaonic Egypt during the times of Pharaoh Sahure and Queen Hatshepsut."],
+                                  ["Middle Africa", "So many people", "Archeological finds in Central Africa have been discovered dating back over 100,000 years. During the Conference of Berlin in 1884-85 Africa was divided up between the European colonial powers, defining boundaries that are largely intact with today's post-colonial states."],
+                                  ["Northern Africa", "Not many folks", "The most notable nations of antiquity in western North Africa are Carthage and Numidia. The Phoenicians colonized much of North Africa including Carthage and parts of present-day Morocco (including Chellah, Mogador and Volubilis). The Arab Islamic conquest reached North Africa in 640 AD. By 670, most of North Africa had fallen to Muslim rule. Indigenous Berbers subsequently started to form their own polities in response in places such as Fez, Morocco, and Sijilimasa. In World War II from 1940 to 1943 the area was the setting for the North African Campaign. During the 1950s and 1960s all of the North African states gained independence. There remains a dispute over Western Sahara between Morocco and the Algerian-backed Polisario Front."],
+                                  ["Southern Africa", "Not many folks", "South Africa contains some of the oldest archaeological and human fossil sites in the world. At the time of European contact, the dominant ethnic group were Bantu-speaking peoples who had migrated from other parts of Africa about one thousand years before. The two major historic groups were the Xhosa and Zulu peoples. On 31 May 1961, South Africa became a republic following a referendum in which white voters narrowly voted in favour thereof (the British-dominated Natal province rallied against the issue)."],
+                                  ["Western Africa", "Not many folks", "The history of West Africa can be divided into five major periods: first, its prehistory, in which the first human settlers arrived, developed agriculture, and made contact with peoples to the north; the second, the Iron Age empires that consolidated both intra-African, and extra-African trade, and developed centralized states; third, Major polities flourished, which would undergo an extensive history of contact with non-Africans; fourth, the colonial period, in which Great Britain and France controlled nearly the whole of the region; fifth, the post-independence era, in which the current nations were formed."],
+                                  ["Caribbean", "Not many folks", "All islands at some point were, and a few still are, colonies of European nations; a few are overseas or dependent territories. The British West Indies were united by the United Kingdom into a West Indies Federation between 1958 and 1962. The independent countries formerly part of the B.W.I. still have a joint cricket team that competes in Test matches, One Day Internationals and Twenty20 Internationals."],
+                                  ["Central America", "Not many folks", "In the Pre-Columbian era, the northern areas of Central America were inhabited by the indigenous peoples of Mesoamerica. Most notable among these were the Mayans, who had built numerous cities throughout the region, and the Aztecs, who had created a vast empire. The pre-Columbian cultures of the southern areas of Central America traded with both Mesoamerica and South America, and can be considered transitional between those two cultural areas. After more than two hundred years of social unrest, violent conflict and revolution, Central America today remains in a period of political transformation. Poverty, social injustice and violence are still widespread. Nicaragua is the second poorest country in the western hemisphere (only Haiti is poorer)."],
+                                  ["South America", "Not many folks", "South America is believed to have been joined with Africa from the late Paleozoic Era to the early Mesozoic Era, until the supercontinent Pangaea began to rift and break apart about 225 million years ago. Therefore, South America and Africa share similar fossils and rock layers. Wars became less frequent in the 20th century, with Bolivia-Paraguay and Peru-Ecuador fighting the last inter-state wars."],
+                                  ["Northern America", "(not North America, because that includes central and caribbean)", "The first inhabitants of North America migrated from Siberia by way of the Bering land bridge and arrived at least 15,000 years ago, though increasing evidence suggests an even earlier arrival. After the Cold War, the 1990s saw the longest economic expansion in modern U.S. history, ending in 2001. Originating in U.S. defense networks, the Internet spread to international academic networks, and then to the public in the 1990s, greatly impacting the global economy, society, and culture. On September 11, 2001, Al-Qaeda terrorists struck the World Trade Center in New York City and the Pentagon near Washington, D.C., killing nearly 3,000 people. In response, the United States launched the War on Terror, which includes the ongoing war in Afghanistan and the 2003–11 Iraq War."],
+                                  ["Central Asia", "Not many folks", "Although, during the golden age of Orientalism the place of Central Asia in the world history was marginalized,contemporary historiography has rediscovered the \"centrality\" of the Central Asia. The history of Central Asia is defined by the area's climate and geography. The aridness of the region made agriculture difficult, and its distance from the sea cut it off from much trade. Thus, few major cities developed in the region; instead, the area was for millennia dominated by the nomadic horse peoples of the steppe."],
+                                  ["Eastern Asia", "Not many folks", "he history of East Asia is predominantly the history of the Chinese Dynasties that dominated the region in matters of trade as well as militarily, such as the Qin and the Han Dynasties. There are records of tributes sent overseas from the early kingdoms of Korea and Japan. There were also considerable levels of cultural and religious exchange between the Chinese and other regional Dynasties and Kingdoms. As connections began to strengthen with the Western world, China's power began to diminish. Around the same time, Japan solidified itself as a nation state. Throughout WWII, Korea, Taiwan, Eastern China, and Vietnam fell under Japanese control. Following Japan's defeat in the war, the Korean peninsula became independent, while Taiwan became part of the Republic of China."],
+                                  ["Southern Asia", "Not many folks", "The history of core South Asia begins with evidence of human activity of Homo sapiens, as long as 75,000 years ago, or with earlier hominids including Homo erectus from about 500,000 years ago. The Indus Valley Civilization, which spread and flourished in the northwestern part of South Asia from c. 3300 to 1300 BCE in present-day Northern India, Pakistan and Afghanistan, was the first major civilization in South Asia. A sophisticated and technologically advanced urban culture developed in the Mature Harappan period, from 2600 to 1900 BCE."],
+                                  ["South-Eastern Asia", "Not many folks", "Very little is known about Southeast Asian religious beliefs and practices before the advent of Indian merchants and religious influences from the 2nd century BCE onwards. Prior to the 13th century CE, Hinduism and Buddhism were the main religions in Southeast Asia. "],
+                                  ["Western Asia", "Not many folks", "\"Western Asia\" was in use as a geographical term in the early 19th century, even before \"Near East\" became current as a geopolitical concept. In the context of the history of classical antiquity, \"Western Asia\" could mean the part of Asia known in classical antiquity, as opposed to the reaches of \"interior Asia\", i.e. Scythia, and \"Eastern Asia\" the easternmost reaches of geographical knowledge in classical authors, i.e. Transoxania and India. In the 20th century, \"Western Asia\" was used to denote a rough geographical era in the fields of archaeology and ancient history, especially as a shorthand for \"the Fertile Crescent excluding Ancient Egypt\" for the purposes of comparing the early civilizations of Egypt and the former."],
+                                  ["Eastern Europe", "Not many folks", "Ancient kingdoms of the region included Orontid Armenia Albania, Colchis and Iberia. These kingdoms were either from the start, or later on incorporated into various Iranian empires, including the Achaemenid Persian, Parthian, and Sassanid Persian Empires. A major result of the First World War was the breakup of the Russian, Austro-Hungarian, and Ottoman empires, as well as partial losses to the German Empire. A surge of ethnic nationalism created a series of new states in Eastern Europe, validated by the Versailles Treaty of 1919. Poland was reconstituted after the partitions of the 1790s had divided it between Germany, Austria, and Russia. New countries included Finland, Estonia, Latvia, Lithuania, Ukraine (which was soon absorbed by the Soviet Union), Czechoslovakia, and Yugoslavia."],
+                                  ["Northern Europe", "Not many folks", "Historically, when Europe was dominated by the Mediterranean region (i.e., the Roman Empire), everything not near this sea was termed northern Europe, including Germany, the Low Countries, and Austria. This meaning is still used today in some contexts, such as in discussions of the Northern Renaissance. In medieval times, the term (Ultima) Thule was used to mean a mythical place in the extreme northern reaches of the continent."],
+                                  ["Southern Europe", "Not many folks", "The period known as classical antiquity began with the rise of the city-states of Ancient Greece. Greek influence reached its zenith under the expansive empire of Alexander the Great, spreading throughout Asia. During the Middle Ages, the Eastern Roman Empire survived, though modern historians refer to this state as the Byzantine Empire. In Western Europe, Germanic peoples moved into positions of power in the remnants of the former Western Roman Empire and established kingdoms and empires of their own. The Late Middle Ages represented a period of upheaval in Europe. The epidemic known as the Black Death and an associated famine caused demographic catastrophe in Europe as the population plummeted. Dynastic struggles and wars of conquest kept many of the states of Europe at war for much of the period. In the Balkans, the Ottoman Empire, a Turkish state originating in Anatolia, encroached steadily on former Byzantine lands, culminating in the Fall of Constantinople in 1453. The outbreak of the First World War in 1914 was precipitated by the rise of nationalism in Southeastern Europe as the Great Powers took up sides. The Allies defeated the Central Powers in 1918. During the Paris Peace Conference the Big Four imposed their terms in a series of treaties, especially the Treaty of Versailles."],
+                                  ["Western Europe", "Not many folks", "Prior to the Roman conquest, a large part of Western Europe had adopted the fairly newly developed La Tène culture. As Roman domain expanded, a cultural and linguistic division appeared between the mainly Greek-speaking eastern provinces which had formed the highly urbanized Hellenistic civilization and the western territories, which, in contrast, largely adopted the Latin language. This cultural and linguistic division was eventually reinforced by the later political east-west division of the Roman Empire. Western Europe's significant historical events include the Renaissance, the Age of Discovery, the Protestant Reformation by Martin Luther and the Counter-Reformation of the Catholic Church, the Age of Enlightenment, the French Revolution and the Industrial Revolution. During the final stages of World War II the future of Europe was decided between the Allies in the 1945 Yalta Conference, between the British Prime Minister, Winston Churchill, the U.S. President, Franklin D. Roosevelt, and the Premier of the Soviet Union, Joseph Stalin. The world changed dramatically with the fall of the Iron Curtain in 1989. The Federal Republic of Germany peacefully absorbed the German Democratic Republic, in German reunification. COMECON and the Warsaw Pact were dissolved, and in 1991, the Soviet Union ceased to exist. Several countries which had been part of the Soviet Union regained full independence."],
+                                  ["Australia and New Zealand", "Not many folks", "Human habitation of the Australian continent is estimated to have begun between 42,000 and 48,000 years ago, possibly with the migration of people by land bridges and short sea-crossings from what is now South-East Asia. These first inhabitants may have been ancestors of modern Indigenous Australians. At the time of European settlement in the late 18th century, most Indigenous Australians were hunter-gatherers, with a complex oral culture and spiritual values based on reverence for the land and a belief in the Dreamtime. The first recorded European sighting of the Australian mainland, and the first recorded European landfall on the Australian continent, are attributed to the Dutch navigator Willem Janszoon. The indigenous population, estimated to have been between 750,000 and 1,000,000 at the time European settlement began, declined for 150 years following settlement, mainly due to infectious disease."],
+                                  ["Melanesia", "Not many folks", "The concept among Europeans of Melanesia as a distinct region evolved gradually over time as their expeditions mapped and explored the Pacific. Early European explorers noted the physical differences among groups of Pacific Islanders. In 1756 Charles de Brosses theorized that there was an 'old black race' in the Pacific who were conquered or defeated by the peoples of what is now called Polynesia, whom he distinguished as having lighter skin. Uncertainty about the delineation and definition of the region continues. n 1998 Paul Sillitoe wrote of Melanesia: \"it is not easy to define precisely, on geographical, cultural, biological, or any other grounds, where Melanesia ends and the neighbouring regions... begins\"."],
+                                  ["Micronesia", "Not many folks", "Micronesia began to be settled several millennia ago, although there are competing theories about the origin and arrival of the first settlers. There are numerous difficulties with conducting archaeological excavations in the islands, due to their size, settlement patterns and storm damage. As a result, much evidence is based on linguistic analysis. The earliest archaeological traces of civilization have been found on the island of Saipan, dated to 1500 BCE or slightly before."],
+                                  ["Polynesia", "Not many folks", "The Polynesian people are considered to be by linguistic, archaeological and human genetic ancestry a subset of the sea-migrating Austronesian people and tracing Polynesian languages places their prehistoric origins in the Malay Archipelago, and ultimately, in Taiwan. In the archaeological record there are well-defined traces of this expansion which allow the path it took to be followed and dated with some certainty. It is thought that by roughly 1400 BC, \"Lapita Peoples\", so-named after their pottery tradition, appeared in the Bismarck Archipelago of northwest Melanesia."],
+                                 ]
+
+        function setRegionInfo(region) {
+           document.getElementById('regions_info_panel').innerHTML = regionAbout;
+           document.getElementById('region_info_title').innerHTML = regionSpecificInfo[region-1][0];
+           document.getElementById('population').innerHTML = "Population: " + regionSpecificInfo[region-1][1];
+           document.getElementById('history').innerHTML = "History: " + regionSpecificInfo[region-1][2];
+           for (var mapping of countriesToRegionMapping) {
+              if (mapping[1] == region) {
+                  var li = document.createElement("li");
+                  li.appendChild(document.createTextNode(mapping[0]));
+                  document.getElementById('countries').appendChild(li);
+              }
+           }
+        }
+
     </script>
         <style>
           #regionNavigation {
@@ -303,7 +361,7 @@
           }
           #regionNavigation ul {
             margin: 0;
-            padding: 0; 
+            padding: 0;
           }
           #regionNavigation li {
             border-right: 1px solid #ddd;
@@ -338,7 +396,42 @@
             text-align: center;
           }
 
-          .clearfix:after, 
+          #title_container {
+            width: 1300px;
+            font-size: 200%;
+            margin: auto;
+          }
+
+          #geoscheme_title {
+            width: 900px;
+            float: left;
+            height: 50px;
+          }
+
+          #region_info_title {
+            width:  400px;
+            float: left;
+            height: 50px;
+          }
+
+          #region_container {
+            width: 1300px;
+            margin: auto;
+          }
+
+          #regions_div {
+            width: 900px;
+            float: left;
+            height: 500px;
+          }
+
+          #regions_info_container {
+            width:  400px;
+            float: left;
+            height: 500px;
+          }
+
+          .clearfix:after,
           .clearfix:before {
             content: '';
             display: table;
@@ -353,13 +446,19 @@
         <a href="index.html">Back to Home</a>&nbsp;|&nbsp;
         <a href="world-view.html">World View</a>&nbsp;|&nbsp;
         <a href="at-a-glance.html">At a glance</a>&nbsp;|&nbsp;
-        <a href="quiz.html">Quiz</a>&nbsp;|&nbsp;
         <a href="region-view.html">Regions</a>
     </nav>
-   
-     <h2>UN Geoscheme of Regions</h2>
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+   <div id="title_container">
+    <div id="geoscheme_title">UN Geoscheme of Regions</div>
+    <div id="region_info_title">Region Info:</div>
+   </div>
+    <div id="region_container">
+    <div id="regions_div"></div>
      <!--       Navigation of regional views      -->
+    <div id="regions_info_container">
+        <div id="regions_info_panel"></div>
+        <p>History from Wikipedia. Licensed under CC BY-SA 3.0.</p>
+    </div>
     <nav id="regionNavigation" class="clearfix">
     <ul>
       <!--<li><a href="region2.html">World View of Regions</a></li>-->
@@ -370,5 +469,7 @@
       <li><a href="regionOceania.html">Regions in Oceania</a></li>
     </ul>
   </nav>
+
+  </div>
   </body>
 </html>
