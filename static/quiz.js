@@ -134,9 +134,7 @@ function initialize(target) {
     var containerP = document.getElementById('container');
     containerP.innerHTML = "Where in "+target.region+" is "+target.name+" located?<br>"+
 	"(You may need to zoom in or out)";
-    var btn = document.createElement("BUTTON");        // Create a <button> element
-    var t = document.createTextNode("Congratulations. Click to play again");       // Create a text node
-    btn.appendChild(t);                                // Append the text to <button>   
+    var btn = document.createElement("BUTTON");        // Create a <button> element                            // Append the text to <button>   
     btn.setAttribute('type', 'submit');
     btn.setAttribute('onclick', 'window.location.reload()');
 
@@ -163,9 +161,14 @@ function initialize(target) {
 		    picked = country.short_name;
                     if (picked === target.alpha_2){
 			containerP.innerHTML = "You're right, that's "+country.long_name+"!";
+            var t = document.createTextNode("Congratulations. Click to play again");       // Create a text node
+            btn.appendChild(t);    
 			containerP.appendChild(btn); 
 		    } else {
 			containerP.innerHTML = "No, I'm sorry, that's "+country.long_name+".";
+            var t = document.createTextNode("Click to play again");       // Create a text node
+            btn.appendChild(t);    
+            containerP.appendChild(btn);
 		    }
                 }
                 if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
