@@ -26,6 +26,10 @@ describe('Unit Tests', function() {
 	it('getCountryIcon()', function () {
 		expect(getCountryIcon(test_country)).to.equal("https://chart.googleapis.com/chart?chst=d_simple_text_icon_left&chld=Australia|14|999|flag_au|24|000|FFF");
 	});
+	
+	it('getMsgIcon()', function () {
+		expect(getMsgIcon('oops')).to.equal("https://chart.googleapis.com/chart?chst=d_bubble_text_small&chld=edge_bl|oops|C6EF8C|000000")
+	});
 });
 
 
