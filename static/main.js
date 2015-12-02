@@ -36,7 +36,6 @@ function getOverview(iso3) {
 }
 
 function getGDPOnClick(iso3) {
-    console.log("getGDPOnClick");
     var gdpApi = 'http://gpi.tschuy.com:5000/countries/';
     $.ajax({
         url: gdpApi + iso3 + "/indicators/NY.GDP.MKTP.CD/?date=2014:2014&format=json",
@@ -46,7 +45,6 @@ function getGDPOnClick(iso3) {
 }
 
 function getPOPOnClick(iso3) {
-    console.log("getPOPOnClick");
     var gdpApi = 'http://gpi.tschuy.com:5000/countries/';
     $.ajax({
         url: gdpApi + iso3 + "/indicators/SP.POP.TOTL/?date=2014:2014&format=json",
@@ -56,8 +54,6 @@ function getPOPOnClick(iso3) {
 }
 
 function getWeather(iso3) {
-
-  console.log('weather for ' + iso3);
   var weatherApi = 'http://climatedataapi.worldbank.org/climateweb/rest/v1/country/mavg/tas/1980/1999/'
   var weatherApiEnd = '.json?callback=processweather'
   $.ajax({
@@ -70,7 +66,7 @@ function getWeather(iso3) {
 function processweather(data) {
   // monthly temperatures, which can be graphed to see the "climate"
     $('#weather-table tbody').html('<tr><th><th><td>Degrees(C)</td></tr>')
-    console.log(data[0].monthVals);
+    // console.log(data[0].monthVals);
     var months = [
         "Jan",
         "Feb",
@@ -96,31 +92,30 @@ function processweather(data) {
 }
 
 function processGDP(data) {
-    console.log("processGDP");
-    console.log(data);
+    // console.log("processGDP");
+    // console.log(data);
     
     gdp = JSON.parse(data);
-    console.log(gdp);
-    console.log(gdp[1][0].value);
+    // console.log(gdp);
+    // console.log(gdp[1][0].value);
     
     gdp = gdp[1][0].value;
     $('#country-basics').append($('<ul>').append($('#gdp')).append('<b>GDP</b>: ' + gdp))
 }
 
 function processPOP(data) {
-    console.log("processPOP");
-    console.log(data);
+    // console.log("processPOP");
+    // console.log(data);
     
     pop = JSON.parse(data);
-    console.log(pop);
-    console.log(pop[1][0].value);
+    // console.log(pop);
+    // console.log(pop[1][0].value);
     
     pop = pop[1][0].value;
     $('#country-basics').append($('<ul>').append($('#population')).append('<b>Pop</b>: ' + pop))
 }
 
 function processNews(data) {
-    console.log(data.responseData.results)
     $('#news-list').html('');
     // this is where the news items actually live in the JSON response
     for(var i = 0; i < data.responseData.results.length; i++) {
@@ -138,7 +133,6 @@ function processNews(data) {
     marker.addListener('click', function() {
         infowindow.open(map, marker);
   });
-
 }
 
 
@@ -189,6 +183,7 @@ function getCountryIcon(country){
 }
 
 function getMsgIcon(msg){
+    console.log(msg);
     return  chartBase + 'd_bubble_text_small&chld=edge_bl|' + msg + '|C6EF8C|000000';
 }
 
@@ -238,8 +233,8 @@ function initialize() {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var country = getCountry(results);
                     var iso3 = getIso3ByName(country.long_name);
-                    console.log('COUNTRY NAME IS: ' + country.long_name);
-                    console.log('ISO3 IS: ' + iso3);
+                    // console.log('COUNTRY NAME IS: ' + country.long_name);
+                    // console.log('ISO3 IS: ' + iso3);
                     console.log(country);
                     
                     // Info Window

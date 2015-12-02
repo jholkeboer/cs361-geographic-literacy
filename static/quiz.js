@@ -26,7 +26,7 @@ function playGame() {
 
 
 
-function getCurrentCountry() {
+function getCurrentCountryQuiz() {
   return document.getElementById('country').value;
 }
 
@@ -37,7 +37,7 @@ function eqfeed_callback(results) {
 }
 
 //gotten from http://gmaps-samples-v3.googlecode.com/svn/trunk/country_explorer/country_explorer.html
-function getCountry(results) {
+function getCountryQuiz(results) {
     var geocoderAddressComponent,addressComponentTypes,address;
     for (var i in results) {
         geocoderAddressComponent = results[i].address_components;
@@ -58,6 +58,7 @@ function getCountry(results) {
 
 
 function getTargetCountry(country) {
+    console.log(country);
   geocoder.geocode( { 'address': country }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       map.setCenter(results[0].geometry.location);
@@ -70,8 +71,6 @@ function getTargetCountry(country) {
     }
   });
 }
-
-
 
 function getIso3ByName(name) {
     for(var i = 0; i < countries.length; i++) {
@@ -134,9 +133,7 @@ function initialize(target) {
     var containerP = document.getElementById('container');
     containerP.innerHTML = "Where in "+target.region+" is "+target.name+" located?<br>"+
 	"(You may need to zoom in or out)";
-    var btn = document.createElement("BUTTON");        // Create a <button> element                            // Append the text to <button>   
-    btn.setAttribute('type', 'submit');
-    btn.setAttribute('onclick', 'window.location.reload()');
+
 
     var customMapType = new google.maps.StyledMapType(stylez, {name: 'Border View'});
     map.mapTypes.set('Border View', customMapType);
@@ -148,7 +145,7 @@ function initialize(target) {
             {'latLng': mouseEvent.latLng},
             function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                    var country = getCountry(results);
+                    var country = getCountryQuiz(results);
                     var iso3 = getIso3ByName(country.long_name);
                     console.log('COUNTRY NAME IS: ' + country.long_name);
                     console.log('ISO3 IS: ' + iso3);
@@ -159,16 +156,29 @@ function initialize(target) {
                     marker.setPosition(mouseEvent.latLng);
                     marker.setIcon(getCountryIcon(country));
 		    picked = country.short_name;
-                    if (picked === target.alpha_2){
-			containerP.innerHTML = "You're right, that's "+country.long_name+"!";
-            var t = document.createTextNode("Congratulations. Click to play again");       // Create a text node
-            btn.appendChild(t);    
-			containerP.appendChild(btn); 
+            if (picked === target.alpha_2){
+                while (containerP.firstChild) {
+                    containerP.removeChild(containerP.firstChild);
+                }
+                var btn = document.createElement("BUTTON");        // Create a <button> element                            // Append the text to <button>   
+                btn.setAttribute('type', 'submit');
+                btn.setAttribute('onclick', 'window.location.reload()');
+                containerP.innerHTML = "You're right, that's "+country.long_name+"!";
+                var t = document.createTextNode("Congratulations. Click to play again");       // Create a text node
+                btn.appendChild(t);    
+                containerP.appendChild(btn); 
 		    } else {
-			containerP.innerHTML = "No, I'm sorry, that's "+country.long_name+".";
-            var t = document.createTextNode("Click to play again");       // Create a text node
-            btn.appendChild(t);    
-            containerP.appendChild(btn);
+                while (containerP.firstChild) {
+                    containerP.removeChild(containerP.firstChild);
+                }
+                var btn = document.createElement("BUTTON");        // Create a <button> element                            // Append the text to <button>   
+                btn.setAttribute('type', 'submit');
+                btn.setAttribute('onclick', 'window.location.reload()');
+                containerP.innerHTML = "";
+                containerP.innerHTML = "No, I'm sorry, that's "+country.long_name+".";
+                var t = document.createTextNode("Click to play again");       // Create a text node
+                btn.appendChild(t);    
+                containerP.appendChild(btn);
 		    }
                 }
                 if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
