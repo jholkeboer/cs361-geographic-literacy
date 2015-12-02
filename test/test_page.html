@@ -2,13 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mocha Tests</title>
-  <link rel="stylesheet" href="../bower_components/mocha/mocha.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unit Tests</title>
+  <link rel="stylesheet" href="../bower_components/mocha/mocha.css" /> 
 </head>
 <body>
+  <nav class="navbar navbar-default">
+      Facilitating Geographic Literacy&nbsp;&nbsp;&nbsp;
+      <a href="../index.html">Back to Home</a>&nbsp;|&nbsp;
+      <b><a href="test_page.html">Unit Tests</a>&nbsp;|&nbsp;</b>
+      <a href="integration_tests.html">Integration Tests</a>
+  </nav>
   <div id="mocha"></div>
   <script src="../bower_components/chai/chai.js"></script>
   <script src="../bower_components/mocha/mocha.js"></script>
+  <script src="../bower_components/sinon/lib/sinon.js"></script>
   <script src="../static/main.js"></script>
   <script>mocha.setup('bdd')</script>
   <script src="test.js"></script>

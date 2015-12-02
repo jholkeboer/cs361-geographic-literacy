@@ -2,9 +2,10 @@
 // http://chaijs.com/api/bdd/
 
 var expect = chai.expect;
+chai.should();
 
 
-describe('General Tests', function() {
+describe('Unit Tests', function() {
 	it('Get country ISO3 by name', function () {
 		expect(getIso3ByName("Sweden")).to.equal("SWE");
 	});
@@ -13,14 +14,4 @@ describe('General Tests', function() {
 	})
 });
 
-// describe('News Tests', function () {	
-// 	it('Get News', function () {
-// 		expect()
-// 	});
-// });
 
-// describe('Weather Tests', function () {
-// 	it('Get Weather', function () {
-// 		expect()
-// 	})
-// });
