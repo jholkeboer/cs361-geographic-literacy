@@ -11,6 +11,9 @@ function getCurrentCountry() {
   return document.getElementById('country').value;
 }
 
+//bing client secret
+//3aMZ9lPZDmgY5uBfA+Uq6K5DY+JYTtn5eM8wQCkmTPU=
+
 function getNews() {
   var newsApi = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=';
   $.ajax({
@@ -26,6 +29,29 @@ function getNewsOnClick(countryName) {
         url: newsApi + countryName,
         dataType: 'jsonp',
         success: processNews
+    });
+}
+
+function getBingNews(countryName) {
+    var user = "";
+    var accountKey = "IylTfidjgkhrYjXcRKqbQoddtvuFEfGTo1aSqu0w/Vo";
+    var apiRoot = "http://api.datamarket.azure.com/Bing/Search/v1/News";
+    $.support.cors = true;
+    $.ajax({
+       type: "GET",
+       beforeSend: function (xhr) {
+           var bytes = Crypto.charenc.Binary.stringToBytes(user + ":" + accountKey);
+           var base64 = $.base64.encode(bytes);
+           xhr.setRequestHeader("Authorization", "Basic " + base64);
+           xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+           xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+           xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, Content-Range, Content-Disposition, Content-Description');
+       },
+       url: apiRoot + "?Query=" + encodeURIComponent(countryName),
+       dataType: 'json',
+       success: function (data) {
+           console.log(data);
+       } 
     });
 }
 
