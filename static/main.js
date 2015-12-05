@@ -11,8 +11,6 @@ function getCurrentCountry() {
   return document.getElementById('country').value;
 }
 
-//bing client secret
-//3aMZ9lPZDmgY5uBfA+Uq6K5DY+JYTtn5eM8wQCkmTPU=
 
 function getNews() {
   var newsApi = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=';
@@ -24,36 +22,14 @@ function getNews() {
 }
 
 function getNewsOnClick(countryName) {
-    var newsApi = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=';
+    countryName = countryName.replace(" ", "+");
     $.ajax({
-        url: newsApi + countryName,
-        dataType: 'jsonp',
-        success: processNews
+       url: "http://gpi.tschuy.com:8585/" + countryName,
+       dataType: 'json',
+       success: processNews
     });
 }
 
-function getBingNews(countryName) {
-    var user = "";
-    var accountKey = "IylTfidjgkhrYjXcRKqbQoddtvuFEfGTo1aSqu0w/Vo";
-    var apiRoot = "http://api.datamarket.azure.com/Bing/Search/v1/News";
-    $.support.cors = true;
-    $.ajax({
-       type: "GET",
-       beforeSend: function (xhr) {
-           var bytes = Crypto.charenc.Binary.stringToBytes(user + ":" + accountKey);
-           var base64 = $.base64.encode(bytes);
-           xhr.setRequestHeader("Authorization", "Basic " + base64);
-           xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-           xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-           xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, Content-Range, Content-Disposition, Content-Description');
-       },
-       url: apiRoot + "?Query=" + encodeURIComponent(countryName),
-       dataType: 'json',
-       success: function (data) {
-           console.log(data);
-       } 
-    });
-}
 
 function getOverview(iso3) {
     $('#country-basics').html("<ul><li id='population'></li><li id='gdp'></li></ul>")
@@ -92,7 +68,7 @@ function getWeather(iso3) {
 function processweather(data) {
   // monthly temperatures, which can be graphed to see the "climate"
     $('#weather-table tbody').html('<tr><th><th><td>Degrees(C)</td></tr>')
-    // console.log(data[0].monthVals);
+
     var months = [
         "Jan",
         "Feb",
@@ -111,54 +87,36 @@ function processweather(data) {
         $('#weather-table tbody').append(
             $('<tr>').append(
                 $('<th>').text(months[i]),
-                $('<td>').text(data[0].monthVals[i])
+                $('<td>').text(data[0].monthVals[i].toFixed(2))
             )
         )
     }
 }
 
 function processGDP(data) {
-    // console.log("processGDP");
-    // console.log(data);
-    
     gdp = JSON.parse(data);
-    // console.log(gdp);
-    // console.log(gdp[1][0].value);
-    
-    gdp = gdp[1][0].value;
-    $('#country-basics').append($('<ul>').append($('#gdp')).append('<b>GDP</b>: ' + gdp))
+    gdp = parseInt(gdp[1][0].value).toFixed(2);
+    $('#country-basics').append($('<ul>').append($('#gdp')).append('<b>GDP</b>: $' + gdp))
 }
 
 function processPOP(data) {
-    // console.log("processPOP");
-    // console.log(data);
-    
     pop = JSON.parse(data);
-    // console.log(pop);
-    // console.log(pop[1][0].value);
-    
     pop = pop[1][0].value;
-    $('#country-basics').append($('<ul>').append($('#population')).append('<b>Pop</b>: ' + pop))
+    $('#country-basics').append($('<ul>').append($('#population')).append('<b>Population</b>: ' + pop))
 }
 
 function processNews(data) {
     $('#news-list').html('');
     // this is where the news items actually live in the JSON response
-    for(var i = 0; i < data.responseData.results.length; i++) {
-        // var newsNum = i + 1
-        // contentString = contentString + newsNum + ". " + data.responseData.results[i]['content'] + '<br>' + "<a href='http://" + data.responseData.results[i]['url'] + "'>" + data.responseData.results[i]['unescapedUrl'] + "</a>" + '<br><hr>'
+    for(var i = 0; i < data.d.results.length; i++) {
         $('#news-list').append($('<li>').append($('<a>',{
-            text: data.responseData.results[i].titleNoFormatting,
+            text: data.d.results[i].Title,
             title: "News Link " + (i+1).toString(),
-            href: data.responseData.results[i].unescapedUrl
+            href: data.d.results[i].Url
         })))
     }
     
     infowindow = new google.maps.InfoWindow({content: contentString});
-
-    marker.addListener('click', function() {
-        infowindow.open(map, marker);
-  });
 }
 
 

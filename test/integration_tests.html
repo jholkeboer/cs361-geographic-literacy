@@ -52,7 +52,7 @@
   </table>
 </body>
 <script>
-  var newsApi = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=';
+  var newsApi = 'http://gpi.tschuy.com:8585/';
   var gdpApi = 'http://gpi.tschuy.com:5000/countries/';
   var weatherApi = 'http://climatedataapi.worldbank.org/climateweb/rest/v1/country/mavg/tas/1980/1999/';
   var weatherApiEnd = '.json';
@@ -94,7 +94,7 @@
       $('#weather-result').text("Yes");
     } else {
       console.log("Weather failed.");
-      $('#weater-result').text("No");
+      $('#weather-result').text("No");
     }
   }
   
@@ -104,6 +104,21 @@
     dataType: 'jsonp',
     jsonpCallback: 'weathercallback',
   });
+  
+  // News test request
+  $.ajax({
+    url: newsApi + "United+States",
+    dataType: 'json',
+    success: function (data) {
+      if (data.d.results.length == 10 && typeof(data) == 'object') {
+        console.log("News passed.");
+        $('#news-result').text("Yes");
+      } else {
+        console.log("News failed.");
+        $('#news-result').text("No");
+      }      
+    }
+  })
 
 </script>
 </html>
